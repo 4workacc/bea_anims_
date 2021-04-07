@@ -10,9 +10,9 @@
     #MainScreen {
         position: absolute;
         width: 500px;
-        height: 300px;
+        height: 600px;
         left: 50%;
-        top: 50%;
+        top: 20%;
         margin-left: -250px;
         margin-top: -150px;
         box-shadow: 0 0 1px 1px lightblue;
@@ -85,6 +85,13 @@
     #Menu div:hover{
         box-shadow: 0 0 2px 2px gray;
     }
+    .Pic {
+        width: 300px;
+        height: 500%;
+        margin: 0 auto;
+        border: 1px solid black;
+        
+    }
 </style>
 <body>
     <div id = "Menu">
@@ -102,6 +109,9 @@
         <div id = "Answers">
             <div onclick="clickHandler(0)" id = "Left"><p id = "WordLeft"></p></div>
             <div onclick="clickHandler(1)" id = "Right"><p id = "WordRight"></p></div>
+        </div>
+        <div class= "Pic">
+
         </div>
     </div>
 </body>
@@ -715,7 +725,7 @@
             setCurShow(); 
     };
     function ShowResult() {
-        alert ( "Дакладна "+ rightCount +" з " + maxIndex + " заданняў");
+        alert ( `Дакладна ${rightCount} з ${maxIndex} заданняў. Адзнака: ${Math.floor(rightCount/maxIndex*10)}`);
     }
 
     function setCurShow() {
@@ -737,5 +747,6 @@
         document.getElementById("Menu").style.display = "none";
         document.getElementById("MainScreen").style.display = "flex";
     }
+    
 </script>
 </html>
