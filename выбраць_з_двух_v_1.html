@@ -87,11 +87,14 @@
     }
     .Pic {
         width: 300px;
-        height: 500%;
+        height: 300px;
         margin: 0 auto;
-        border: 1px solid black;
         
+        background-position: center;
+        background-repeat: no-repeat;
+              
     }
+    
 </style>
 <body>
     <div id = "Menu">
@@ -111,11 +114,12 @@
             <div onclick="clickHandler(1)" id = "Right"><p id = "WordRight"></p></div>
         </div>
         <div class= "Pic">
-
+            <div class="PicNeutral"></div>
         </div>
     </div>
 </body>
 <script>
+    document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/good.jpg')";
     document.getElementById("MainScreen").style.display = "none";
     let arr = [
         [
@@ -685,6 +689,8 @@
     let curIndex = 0;
     let maxIndex = 10;
     let rightCount = 0;
+    let badCount = 0;
+    
 
     let curArr = [];   
     
@@ -709,11 +715,30 @@
         if ( curElement.innerHTML.toUpperCase() === curArr[curIndex][2].toUpperCase()) {
             curDiv.style.backgroundColor = "green";                       
             rightCount += 1;
+            document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/good2.jpg')";
         }
         else {
             curDiv.style.backgroundColor = "red";            
+            if (badCount<10) {badCount += 1};
+            document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/bad1.png')";
         }
         curIndex += 1;
+        // let xx = (rightCount-badCount);
+        // if ( xx > -4 && xx < 4 ) {
+        //     document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/neutral.jpg')";
+        // }
+        // if ( rightCount  >= Math.floor( maxIndex / 2 )) {
+        //     document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/good.jpg')";
+        // }
+        // if ( rightCount === maxIndex ) {
+        //     document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/good2.jpg')";
+        // }
+        // if ( badCount  >= Math.floor( maxIndex / 2 )) {
+        //     document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/bad1.png')";
+        // } 
+        // if ( badCount === maxIndex ) {
+        //     document.getElementsByClassName("Pic")[0].style.backgroundImage = "url('./img/bad2.jpeg')";
+        // }
         if ( curIndex < maxIndex ) {
             setTimeout( Timer, 500);}
         else {
@@ -725,7 +750,7 @@
             setCurShow(); 
     };
     function ShowResult() {
-        alert ( `Дакладна ${rightCount} з ${maxIndex} заданняў. Адзнака: ${Math.floor(rightCount/maxIndex*10)}`);
+        alert ( `Дакладна ${rightCount} з ${maxIndex} заданняў. Адзнака: ${9 - badCount}`);
     }
 
     function setCurShow() {
